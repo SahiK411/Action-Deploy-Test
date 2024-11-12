@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "gh-pages" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "gh-pages" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Build and Test
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
@@ -29,3 +29,11 @@ jobs:
     - run: npm ci
     - run: npm run predeploy
     - run: npm run test
+  
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and deploy
+        uses: omkartapale/react-deployment-gh-pages@v1.0.0

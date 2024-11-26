@@ -41,7 +41,7 @@ function App() {
           Welcome!
         </p>
         <p>
-          Please enter your name
+          Por favor ingresa tu nombre
         </p>
       </header>
       <div id='pageBody' className='App-body'>
